@@ -25,11 +25,16 @@ SECRET_KEY = 'django-insecure-i%0rf@n6va1pu!0e=3)=kru4&&3e0$6wc-mv(wm1uh1s5p@eua
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
 LOGIN_URL = 'login'  # Redirects unauthorized users to the login page
 
-# Application definition
+AUTHENTICATION_BACKENDS = [
+    'your_app_name.backends.EmailBackend',  # Custom email authentication
+    'django.contrib.auth.backends.ModelBackend',  # Default username authentication
+]
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
