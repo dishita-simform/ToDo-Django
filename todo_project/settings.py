@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-i%0rf@n6va1pu!0e=3)=kru4&&3e0$6wc-mv(wm1uh1s5p@eua
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_URL = 'login'  # Redirects unauthorized users to the login page
 
 # Application definition
 
