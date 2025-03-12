@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['*']
 LOGIN_URL = 'login'  # Redirects unauthorized users to the login page
 
 AUTHENTICATION_BACKENDS = [
-    'your_app_name.backends.EmailBackend',  # Custom email authentication
+    'todo_app.backends.EmailBackend',  # Custom email authentication
     'django.contrib.auth.backends.ModelBackend',  # Default username authentication
 ]
 

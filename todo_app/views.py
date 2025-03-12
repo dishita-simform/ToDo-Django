@@ -10,11 +10,12 @@ def home(request):
     return render(request, "home.html", {"image_url": image_url})
 
 def register(request):
-    """ Handles user registration """
+    """Handles user registration"""
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
+            user.first_name = form.cleaned_data.get('first_name')  # Ensure first name is saved
             user.email = form.cleaned_data.get('email')
             user.save()
             return redirect('login')
@@ -23,7 +24,10 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 def user_login(request):
-    """ Allows users to log in with either email or username """
+    """Allows users to log in with either email or username"""
+    if request.user.is_authenticated:
+        return redirect('task_list')  # Redirect if already logged in
+
     if request.method == 'POST':
         form = CustomLoginForm(request, data=request.POST)
         if form.is_valid():
@@ -33,23 +37,23 @@ def user_login(request):
             # Check if input is an email
             user = User.objects.filter(email=username_or_email).first()
             if user:
-                username = user.username  # Get the username from email
+                username = user.username  # Convert email to username
             else:
-                username = username_or_email  # If not an email, assume it's a username
+                username = username_or_email  # Assume username was entered
 
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect('task_list')
+                return redirect('task_list')  # Redirect to task list
 
     else:
         form = CustomLoginForm()
-    
+
     return render(request, 'login.html', {'form': form})
 
 def user_logout(request):
     logout(request)
-    return redirect('login')
+    return render(request, 'logout.html')
 
 ### 🚀 **Task CRUD Operations (Require Login)**
 
