@@ -9,29 +9,29 @@ class RegisterForm(UserCreationForm):
     """
     first_name = forms.CharField(
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter first name'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter First Name'})
     )
     
     last_name = forms.CharField(
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter last name'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Last Name'})
     )
 
     email = forms.EmailField(
         required=True,
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'})
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your E-Mail'})
     )
 
     username = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Choose a username'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Choose A UserName'})
     )
 
     password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter password'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter PassWord'})
     )
 
     password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm password'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm PassWord'})
     )
 
     class Meta:
@@ -44,12 +44,12 @@ class CustomLoginForm(AuthenticationForm):
     Custom login form to allow authentication using either email or username.
     """
     username = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter email or username'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter E-Mail or UserName'}),
         label="Email or Username"
     )
 
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}),
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter Your PassWord'}),
         label="Password"
     )
 
@@ -68,8 +68,8 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ['title', 'description', 'completed', 'completed_at']
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter task title'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Task details...'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Task Title'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter Task Details'}),
             'completed': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
